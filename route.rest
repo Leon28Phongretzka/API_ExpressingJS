@@ -1,1 +1,12 @@
 GET http://localhost:8000/subscribers
+
+
+###
+
+POST http://localhost:8000/subscribers
+Content-Type: application/json
+
+{
+    "name": "Sub Zero Project",
+    "subcriber": "75000"
+}
