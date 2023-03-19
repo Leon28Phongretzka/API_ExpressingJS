@@ -2,13 +2,10 @@ GET http://localhost:8000/subscribers
 
 
 ###
-
-
 GET http://localhost:8000/subscribers/64167a86ea8fe86330996e56
 
 
 ###
-
 POST http://localhost:8000/subscribers
 Content-Type: application/json
 
@@ -16,7 +13,6 @@ Content-Type: application/json
     "name": "Sub Zero Project",
     "subscriber": "75000"
 }
-
 
 ###
 POST http://localhost:8000/subscribers
@@ -33,7 +29,6 @@ DELETE http://localhost:8000/subscribers/6416770006b1300e8f4a2de3
 ###
 PUT http://localhost:8000/subscribers/6416747213af28dc72461b93
 Content-Type: application/json
-
 {
     "name": "Sub Zero Project",
     "subscriber": "165000"
