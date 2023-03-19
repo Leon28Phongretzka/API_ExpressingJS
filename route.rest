@@ -8,5 +8,5 @@ Content-Type: application/json
 
 {
     "name": "Sub Zero Project",
-    "subcriber": "75000"
+    "subscriber": "75000"
 }
