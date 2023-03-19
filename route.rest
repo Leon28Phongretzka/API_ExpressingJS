@@ -24,6 +24,14 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8000/subscribers
+Content-Type: application/json
+
+{
+    "name": "Phong"
+    "subcriber": "4500"
+}
+###
 DELETE http://localhost:8000/subscribers/6416770006b1300e8f4a2de3
 
 ###

@@ -1,4 +1,5 @@
 const express = require('express');
+const { db } = require('../models/subscriber');
 const router = express.Router();
 const Subscriber = require('../models/subscriber');
 // Getting all
@@ -17,7 +18,8 @@ router.get('/:id',getSubscriber, (req, res) => {
 });
 
 // Creating One
-router.post('/', async (req, res) => {
+router.post('/', findOne, async (req, res) => {
+    console.log(req.body.name);
     const subscriber = new Subscriber({
         name: req.body.name,
         subscriber: req.body.subscriber
@@ -62,17 +64,9 @@ router.delete('/:id',getSubscriber, async (req, res) => {
     }
 });
 
-// Deleting Duplicate
-router.delete('/duplicate', async (req, res) => {
-    try{
-        deleteDuplicate(req, res);
-        res.json({ message: 'Deleted Duplicate' });
-    }
-    catch(err){
-        res.status(500).json({ message: err.message });
-    }
-});
 
+
+// controller
 async function getSubscriber(req, res, next)
 {
     let subscriber
@@ -92,22 +86,26 @@ async function getSubscriber(req, res, next)
     next()
 }
 
-async function deleteDuplicate(req, res)
+// controller
+async function findOne(req, res, next)
 {
     try
     {
-        const subscriber = await Subscriber.find();
-        subscriber.forEach(element => {
-            if(element.name == req.body.name)
-            {
-                element.deleteOne();
-            }
-        });
+        const database = db;
+        const collection = database.collection('subscribers');
+        const filter = { name: req.body.name };
+        const result = await collection.findOne(filter);
+        if(result != null)
+        {
+            return res.status(400).json({ message: 'Duplicate' });
+        }
+        console.log('Document found:', result);
     }
     catch(err)
     {
         return res.status(500).json({ message: err.message });
     }
+    next()
 }
 
 module.exports = router
