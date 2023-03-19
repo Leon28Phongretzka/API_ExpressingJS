@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://phongretzka:Leon8Goretzka@cluster0.1gjyjgw.mongodb.net/?retryWrites=true&w=majority"
+const uri = "mongodb+srv://phongretzka:Leon8Goretzka@cluster0.7g4zyfg.mongodb.net/?retryWrites=true&w=majority"
 
 
 require('dotenv').config();
