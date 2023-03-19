@@ -3,6 +3,12 @@ GET http://localhost:8000/subscribers
 
 ###
 
+
+GET http://localhost:8000/subscribers/64167a86ea8fe86330996e56
+
+
+###
+
 POST http://localhost:8000/subscribers
 Content-Type: application/json
 
@@ -10,3 +16,18 @@ Content-Type: application/json
     "name": "Sub Zero Project",
     "subscriber": "75000"
 }
+
+
+###
+POST http://localhost:8000/subscribers
+Content-Type: application/json
+
+{
+    "name": "Goretzka",
+    "subscriber": "1550000"
+}
+
+###
+DELETE http://localhost:8000/subscribers/64167a86ea8fe86330996e56
+
+
