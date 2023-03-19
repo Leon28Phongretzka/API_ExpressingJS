@@ -1,24 +1,15 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://phongretzka:Leon8Goretzka@cluster0.7g4zyfg.mongodb.net/?retryWrites=true&w=majority"
-
 
 require('dotenv').config();
 
-async function connect() {
-    try {
-        await mongoose.connect(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("Connected to MongoDB");
-    } catch (error) {
-        console.log("Error connecting to MongoDB", error);
-    }
-}
+// connect use .env
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Database'));
 
-connect();
 app.use(express.json());
 
 const subscribersRouter = require('./routes/subscribers');
