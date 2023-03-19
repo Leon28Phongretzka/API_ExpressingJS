@@ -28,6 +28,21 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8000/subscribers/64167a86ea8fe86330996e56
+DELETE http://localhost:8000/subscribers/6416770006b1300e8f4a2de3
+
+###
+PUT http://localhost:8000/subscribers/6416747213af28dc72461b93
+Content-Type: application/json
+
+{
+    "name": "Sub Zero Project",
+    "subscriber": "165000"
+    
+}
+
+
+
+###
+DELETE http://localhost:8000/duplicates
 
 

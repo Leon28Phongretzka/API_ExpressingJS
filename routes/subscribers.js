@@ -32,14 +32,14 @@ router.post('/', async (req, res) => {
 });
 
 // Updating One
-router.patch('/:id',getSubscriber, async (req, res) => {
+router.put('/:id',getSubscriber, async (req, res) => {
     if(req.body.name != null)
     {
         res.subscriber.name = req.body.name;
     }
     if(req.body.subscriber != null)
     {
-        res.subscriber.subscriberz = req.body.subscriber;
+        res.subscriber.subscriber = req.body.subscriber;
     }
     try{
         const updatedSubscriber = await res.subscriber.save();
@@ -56,6 +56,17 @@ router.delete('/:id',getSubscriber, async (req, res) => {
     try{
         await res.subscriber.deleteOne();
         res.json({ message: 'Deleted Subscriber' });
+    }
+    catch(err){
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// Deleting Duplicate
+router.delete('/duplicate', async (req, res) => {
+    try{
+        deleteDuplicate(req, res);
+        res.json({ message: 'Deleted Duplicate' });
     }
     catch(err){
         res.status(500).json({ message: err.message });
@@ -79,6 +90,24 @@ async function getSubscriber(req, res, next)
     }
     res.subscriber = subscriber
     next()
+}
+
+async function deleteDuplicate(req, res)
+{
+    try
+    {
+        const subscriber = await Subscriber.find();
+        subscriber.forEach(element => {
+            if(element.name == req.body.name)
+            {
+                element.deleteOne();
+            }
+        });
+    }
+    catch(err)
+    {
+        return res.status(500).json({ message: err.message });
+    }
 }
 
 module.exports = router
