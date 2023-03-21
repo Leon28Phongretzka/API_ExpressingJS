@@ -19,8 +19,8 @@ POST http://localhost:8000/subscribers
 Content-Type: application/json
 
 {
-    "name": "Goretzka",
-    "subscriber": "1550000"
+    "name": "ZZZZZ",
+    "subscriber": "15500000"
 }
 
 ###
@@ -28,22 +28,21 @@ POST http://localhost:8000/subscribers
 Content-Type: application/json
 
 {
-    "name": "Phong"
-    "subcriber": "4500"
+    "name": "Phong",
+    "subscriber": "4500"
 }
 ###
 DELETE http://localhost:8000/subscribers/6416770006b1300e8f4a2de3
 
 ###
-PUT http://localhost:8000/subscribers/6416747213af28dc72461b93
+PATCH http://localhost:8000/subscribers/64167d2a317872a4c93a480c
 Content-Type: application/json
+
 {
     "name": "Sub Zero Project",
     "subscriber": "165000"
     
 }
-
-
 
 ###
 DELETE http://localhost:8000/duplicates

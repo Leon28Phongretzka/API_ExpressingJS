@@ -34,7 +34,7 @@ router.post('/', findOne, async (req, res) => {
 });
 
 // Updating One
-router.put('/:id',getSubscriber, async (req, res) => {
+router.patch('/:id',getSubscriber, async (req, res) => {
     if(req.body.name != null)
     {
         res.subscriber.name = req.body.name;
@@ -45,12 +45,11 @@ router.put('/:id',getSubscriber, async (req, res) => {
     }
     try{
         const updatedSubscriber = await res.subscriber.save();
-        res.json(updatedSubscriber);
+        res.json(updatedSubscriber)
     }
     catch(err){
-        res.status(400).json({ message: err.message });
+        res.status(500).json({ message: err.message });
     }
-
 });
 
 // Deleting One
@@ -86,7 +85,7 @@ async function getSubscriber(req, res, next)
     next()
 }
 
-// controller
+// Find Existed
 async function findOne(req, res, next)
 {
     try
