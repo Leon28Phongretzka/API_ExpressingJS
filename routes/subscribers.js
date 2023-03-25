@@ -22,7 +22,11 @@ router.post('/', findOne, async (req, res) => {
     console.log(req.body.name);
     const subscriber = new Subscriber({
         name: req.body.name,
-        subscriber: req.body.subscriber
+        best_mv_name: req.body.best_mv_name,
+        genre: req.body.genre,
+        youtube_subscriber: req.body.youtube_subscriber,
+        spotify_stream_count: req.body.spotify_stream_count,
+        subscribeDate: req.body.subscribeDate
     })
     try{
         const newSubscriber = await subscriber.save();
@@ -51,9 +55,13 @@ router.patch('/:id',getSubscriber, async (req, res) => {
     {
         res.subscriber.name = req.body.name;
     }
-    if(req.body.subscriber != null)
+    if(req.body.best_mv_name != null)
     {
-        res.subscriber.subscriber = req.body.subscriber;
+        res.subscriber.best_mv_name = req.body.best_mv_name;
+    }
+    if(req.body.best_mv_name != null)
+    {
+        res.subscriber.genre = req.body.genre;
     }
     try{
         const updatedSubscriber = await res.subscriber.save();
@@ -75,6 +83,16 @@ router.delete('/:id',getSubscriber, async (req, res) => {
     }
 });
 
+// Deleting All
+router.delete('/delall', async (req, res) => {
+    try{
+        await Subscriber.deleteMany();
+        res.json({ message: 'Deleted All Subscribers' });
+    }
+    catch(err){
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 // controller

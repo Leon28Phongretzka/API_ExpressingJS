@@ -5,7 +5,20 @@ const subscriberSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    subscriber:
+    best_mv_name:{
+        type: String,
+        required: true
+    },
+    genre:{
+        type: String,
+        required: true
+    },
+    youtube_subscriber:
+    {
+        type: String,
+        required: true
+    },
+    spotify_stream_count:
     {
         type: String,
         required: true
