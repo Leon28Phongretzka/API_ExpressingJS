@@ -33,6 +33,18 @@ router.post('/', findOne, async (req, res) => {
     }
 });
 
+// Creating Many
+router.post('/many', findOne, async (req, res) => {
+    try{
+        const newSubscriber = await Subscriber.insertMany(req.body);
+        res.status(201).json(newSubscriber);
+    }
+    catch(err){
+        res.status(400).json({ message: err.message });
+    }
+});
+
+
 // Updating One
 router.patch('/:id',getSubscriber, async (req, res) => {
     if(req.body.name != null)

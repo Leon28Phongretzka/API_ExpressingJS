@@ -24,6 +24,21 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8000/subscribers/many
+Content-Type: application/json
+
+[
+    {
+        "name": "Sub Zero Project",
+        "subscriber": "75000"
+    },
+    {
+        "name": "ZZZZZ",
+        "subscriber": "15500000"
+    }
+]
+
+###
 POST http://localhost:8000/subscribers
 Content-Type: application/json
 
