@@ -28,20 +28,23 @@ Content-Type: application/json
         "best_mv_name": "Spaceman",
         "genre": "BigRoom, TechRoom",
         "youtube_subscriber": "5.08M",
-        "spotify_stream_count": "6,453,928"
+        "spotify_id": "6BrvowZBreEkXzJQMpL174",
+        "spotify_stream_count": "6,473,051"
     },
     {
         "name": "Don Diablo",
         "best_mv_name": "Cutting Shapes",
         "genre": "Future House",
         "youtube_subscriber": "1.35M",
+        "spotify_id": "1l2ekx5skC4gJH8djERwh1",
         "spotify_stream_count": "6,713,338"
     },
     {
         "name": "Martin Garrix",
         "best_mv_name": "Animals",
         "genre": "Future House, BigRoom",
-        "youtube_subscriber": "14.5M",
+        "youtube_subscriber": "14.5M",        
+        "spotify_id": "60d24wfXkVzDSfLS6hyCjZ",
         "spotify_stream_count": "23,205,390"
     },
     {
@@ -49,6 +52,7 @@ Content-Type: application/json
         "best_mv_name": "Darkest Hour",
         "genre": "Hardstyle, Euphoric Hardstyle",
         "youtube_subscriber": "74,580",
+        "spotify_id": "4f0OXMMSxr0r8Ztx6CdpAl",
         "spotify_stream_count": "1,765,107"
     },
     {
@@ -56,13 +60,15 @@ Content-Type: application/json
         "best_mv_name": "Majesty",
         "genre": "Trap, Dubstep",
         "youtube_subscriber": "315K",
+        "spotify_id": "1fd3fmwlhrDl2U5wbbPQYN",
         "spotify_stream_count": "2,085,245"
     },
     {
         "name": "Coone",
-        "best_mv_name": "Toss A COin To Your Witcher",
+        "best_mv_name": "Toss A Coin To Your Witcher",
         "genre": "Trap, Dubstep",
         "youtube_subscriber": "254K",
+        "spotify_id": "1Wt63OMKtv6v2ivHuQLm2C",
         "spotify_stream_count": "1,669,295"
     },
     {
@@ -70,6 +76,7 @@ Content-Type: application/json
         "best_mv_name": "Tremor",
         "genre": "BigRoom, Electro House",
         "youtube_subscriber": "5.22M",
+        "spotify_id": "73jBynjsVtofjRpdpRAJGk",
         "spotify_stream_count": "10,596,184"
     },
     {
@@ -77,20 +84,15 @@ Content-Type: application/json
         "best_mv_name": "Wake Me Up",
         "genre": "Progressive House",
         "youtube_subscriber": "20.5M",
+        "spotify_id": "1vCWHaC5f2uS3yhpwWbIA6",
         "spotify_stream_count": "34,357,452"
-    }
-]
-
-###
-POST http://localhost:8000/subscribers/many
-Content-Type: application/json
-
-[
+    },
     {
         "name": "KSHMR",
         "best_mv_name": "Secrets",
         "genre": "BigRoom, Indian BigRoom",
         "youtube_subscriber": "1.75M",
+        "spotify_id": "2wX6xSig4Rig5kZU6ePlWe",
         "spotify_stream_count": "5,611,944"
     },
     {
@@ -98,6 +100,7 @@ Content-Type: application/json
         "best_mv_name": "Bigfoot",
         "genre": "BigRoom, Electro House",
         "youtube_subscriber": "1.07M",
+        "spotify_id": "2rTo8KIkBTFjQS7VvaKYQ4",
         "spotify_stream_count": "5,660,946"
     },
     {
@@ -105,40 +108,22 @@ Content-Type: application/json
         "best_mv_name": "Superlike",
         "genre": "Future House, Electro House",
         "youtube_subscriber": "580K",
+        "spotify_id": "",
         "spotify_stream_count": "1,092,564"
-    },
-    {
-        "name": "EXTSY",
-        "best_mv_name": "Addicted Radio",
-        "genre": "Multi Genre",
-        "youtube_subscriber": "49K",
-        "spotify_stream_count": "55,334"
     }
 ]
 
 ###
-POST http://localhost:8000/subscribers
-Content-Type: application/json
-{
-    "name": "Phong",
-    "best_mv_name": "Gam Gam",
-    "genre": "BigRoom",
-    "youtube_subscriber": "6080",
-    "spotify_stream_count": "1765",
-}
-###
 DELETE http://localhost:8000/subscribers/
 
 ###
-DELETE http://localhost:8000/subscribers/delall
+DELETE http://localhost:8000/subscribers/delall/
 
 ###
 PATCH http://localhost:8000/subscribers/64167d2a317872a4c93a480c
 Content-Type: application/json
 {
     "name": "Sub Zero Project",
-    
-    
 }
 
 ###

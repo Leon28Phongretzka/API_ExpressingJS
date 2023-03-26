@@ -2,6 +2,7 @@ const express = require('express');
 const { db } = require('../models/subscriber');
 const router = express.Router();
 const Subscriber = require('../models/subscriber');
+// const spotifyAPI = require('../spotify_API');
 // Getting all
 router.get('/', async (req, res) => {
     try {
@@ -25,6 +26,7 @@ router.post('/', findOne, async (req, res) => {
         best_mv_name: req.body.best_mv_name,
         genre: req.body.genre,
         youtube_subscriber: req.body.youtube_subscriber,
+        spotify_id: req.body.spotify_id,
         spotify_stream_count: req.body.spotify_stream_count,
         subscribeDate: req.body.subscribeDate
     })
@@ -71,6 +73,19 @@ router.patch('/:id',getSubscriber, async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+// Updating All Spotify Monthly Stream Count
+// router.patch('/updateall', async (req, res) => {
+//     try{
+//         const updatedSubscriber = await Subscriber.updateMany({}, 
+//             { $set: { spotify_stream_count: req.body.spotify_stream_count } }
+//         );
+//         res.json(updatedSubscriber)
+//     }
+//     catch(err){
+//         res.status(500).json({ message: err.message });
+//     }
+// });
 
 // Deleting One
 router.delete('/:id',getSubscriber, async (req, res) => {
