@@ -28,7 +28,7 @@ const subscriberSchema = new mongoose.Schema({
     spotify_followers:
     {
         type: Number,
-        required: false
+        required: true
     },
     subscribeDate:
     {
