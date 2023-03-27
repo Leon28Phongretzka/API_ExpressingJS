@@ -2,7 +2,16 @@ const express = require('express');
 const { db } = require('../models/subscriber');
 const router = express.Router();
 const Subscriber = require('../models/subscriber');
+const spotifyWebAPI = require('spotify-web-api-node');
 // const spotifyAPI = require('../spotify_API');
+
+const spotifyAPI = new spotifyWebAPI({
+    clientId: process.env.MY_CLIENT_ID,
+    clientSecret: process.env.MY_CLIENT_SECRET,
+});
+
+require('dotenv').config();
+
 // Getting all
 router.get('/', async (req, res) => {
     try {
@@ -27,6 +36,7 @@ router.post('/', findOne, async (req, res) => {
         genre: req.body.genre,
         youtube_subscriber: req.body.youtube_subscriber,
         spotify_id: req.body.spotify_id,
+        spotify_followers: spotify_followers(req.body.spotify_id),
         spotify_stream_count: req.body.spotify_stream_count,
         subscribeDate: req.body.subscribeDate
     })
@@ -150,6 +160,22 @@ async function findOne(req, res, next)
         return res.status(500).json({ message: err.message });
     }
     next()
+}
+
+function spotify_followers(artist_name) {
+    spotifyAPI.clientCredentialsGrant().then(
+        function (data) {
+            console.log('Login Successful!');
+            spotifyAPI.setAccessToken(data.body['access_token']);
+
+            spotifyAPI.getArtist(artist_name).then(
+                function (data) {
+                    console.log('Follower = ' + data.body.followers.total);
+                    return data.body.followers.total;
+                }
+            );
+        }
+    );
 }
 
 module.exports = router

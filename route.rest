@@ -10,11 +10,24 @@ POST http://localhost:8000/subscribers
 Content-Type: application/json
 
 {
-    "name": "KSHMR",
-    "best_mv_name": "Secrets",
-    "genre": "BigRoom, Indian BigRoom",
-    "youtube_subscriber": "1.75M",
-    "spotify_stream_count": "5,611,944"
+    "name": "Tiesto",
+    "best_mv_name": "The Business",
+    "genre": "Multi Genre",
+    "youtube_subscriber": "6.44M",
+    "spotify_stream_count": "45,827,377"
+}
+
+###
+POST http://localhost:8000/subscribers
+Content-Type: application/json
+
+{
+        "name": "Crunkz",
+        "best_mv_name": "Superlike",
+        "genre": "Future House, Electro House",
+        "youtube_subscriber": "580K",
+        "spotify_id": "4OXIfQQfNxUxqVPwoklWcv",
+        "spotify_stream_count": "1,092,564"
 }
 
 
@@ -108,7 +121,7 @@ Content-Type: application/json
         "best_mv_name": "Superlike",
         "genre": "Future House, Electro House",
         "youtube_subscriber": "580K",
-        "spotify_id": "",
+        "spotify_id": "4OXIfQQfNxUxqVPwoklWcv",
         "spotify_stream_count": "1,092,564"
     }
 ]
@@ -120,10 +133,11 @@ DELETE http://localhost:8000/subscribers/
 DELETE http://localhost:8000/subscribers/delall/
 
 ###
-PATCH http://localhost:8000/subscribers/64167d2a317872a4c93a480c
+PATCH http://localhost:8000/subscribers/642133919812ffc56420797f
+
 Content-Type: application/json
 {
-    "name": "Sub Zero Project",
+    "spotify_id": "4OXIfQQfNxUxqVPwoklWcv",
 }
 
 ###

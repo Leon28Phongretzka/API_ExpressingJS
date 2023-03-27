@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const spotify_API = require('../spotify_API');
-const spotify_API_follower = require('../spotify_API_follower');
+
+require('dotenv').config();
 
 const subscriberSchema = new mongoose.Schema({
     name: {
@@ -25,10 +25,10 @@ const subscriberSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    spotify_stream_count:
+    spotify_followers:
     {
-        type: String,
-        required: true
+        type: Number,
+        required: false
     },
     subscribeDate:
     {
