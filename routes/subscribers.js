@@ -27,6 +27,17 @@ router.get('/:id',getSubscriber, (req, res) => {
     res.json(res.subscriber)
 });
 
+// Searching One by name use GET method
+router.get('/search/:name', async (req, res) => {
+    try {
+        const subscriber = await Subscriber.find({ name: req.params.name });
+        res.json(subscriber);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 // Creating One
 router.post('/', findOne, async (req, res) => {
     console.log(req.body.name);
