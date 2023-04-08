@@ -3,7 +3,7 @@ const { db } = require('../models/subscriber');
 const router = express.Router();
 const Subscriber = require('../models/subscriber');
 const spotifyWebAPI = require('spotify-web-api-node');
-// const spotifyAPI = require('../spotify_API');
+
 
 const spotifyAPI = new spotifyWebAPI({
     clientId: process.env.MY_CLIENT_ID,
