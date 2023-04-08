@@ -19,9 +19,8 @@ app.use(express.json());
 const subscribersRouter = require('./routes/subscribers');
 app.use('/subscribers', subscribersRouter);
 
-const accountRouter = require('./routes/account');
-app.use('/account', accountRouter);
-
+const accountsRouter = require('./routes/accounts');
+app.use('/accounts', accountsRouter);
 
 app.listen(8000, () => {
     console.log("Server is running");
