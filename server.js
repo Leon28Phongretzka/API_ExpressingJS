@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const router = express.Router();
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -19,11 +20,15 @@ app.use(express.json());
 const subscribersRouter = require('./routes/subscribers');
 app.use('/subscribers', subscribersRouter);
 
-const accountsRouter = require('./routes/accounts');
-app.use('/accounts', accountsRouter);
+const usersRouter = require('./routes/users');
+app.use('/users', usersRouter);
+
 
 app.listen(8000, () => {
     console.log("Server is running");
 })
+
+// Export the router
+module.exports = router;
 
 
