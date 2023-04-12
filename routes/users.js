@@ -36,26 +36,31 @@ router.post('/login', async (req, res) => {
     const token = generateAccessToken({ email: req.body.email });
     console.log(token);
     const refToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
-    console.log(refToken);
+    // console.log(refToken);
     refTokens.push(refToken);
-    res.json({ accessToken: token, refreshToken: refToken });
-  })
-
-function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return 
-    {
-        res.status(401).json({ message: "Err " + err.message });
+    if(!user) {
+        res.status(400).json({ message: "User not found" });
     }
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, 
-        (err, user) => {
-        console.log(err);
-        if (err) return res.sendStatus(403);
-        req.user = user;
-        next();
-    })
-}
+    else
+    {
+        const password = user.password;
+        console.log(password);
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        try {
+            if(await bcrypt.compare(password, hashedPassword)) {
+                res.status(200).json({ token: token, refToken: refToken });
+            }
+            else {
+                res.status(400).json({ message: "Wrong Password" });
+            }
+        } catch (err) {
+            res.status(500).json({ message: "Err " + err.message });
+        }
+    }
+});
+
 
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
