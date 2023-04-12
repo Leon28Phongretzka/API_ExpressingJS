@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
+let refTokens = [];
+
 router.post('/', async (req, res) => {
     try {
         console.log(process.env.ACCESS_TOKEN_SECRET);
@@ -14,6 +16,7 @@ router.post('/', async (req, res) => {
         const token = generateAccessToken({ email: req.body.email });
         console.log(salt);
         console.log(hashedPassword);
+        console.log(token);
         const user = new User({
             First_name: req.body.First_name,
             Last_name: req.body.Last_name,
@@ -28,40 +31,30 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/login', authenticateToken, async (req, res) => {
-    const user = { email: req.body.email, password: req.body.password };
-    const accessToken = generateAccessToken(user);
-    if(user == null) return res.sendStatus(401);
-    try
-    {
-        // Check accessToken
-        // if(await 
-        if(await bcrypt.compare(req.body.password, user.password))
-        {
-            res.send("OK!");
-        }
-        else
-        {
-            res.send("Wrong Password");
-        }
-    }
-    catch(err)
-    {
-        res.status(500).send();
-    }
-});
+router.post('/login', async (req, res) => {
+    const user = req.body;
+    const token = generateAccessToken({ email: req.body.email });
+    console.log(token);
+    const refToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+    console.log(refToken);
+    refTokens.push(refToken);
+    res.json({ accessToken: token, refreshToken: refToken });
+  })
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.sendStatus(401);
-
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (token == null) return 
+    {
+        res.status(401).json({ message: "Err " + err.message });
+    }
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, 
+        (err, user) => {
         console.log(err);
         if (err) return res.sendStatus(403);
         req.user = user;
         next();
-    });
+    })
 }
 
 function generateAccessToken(user) {
